@@ -9,6 +9,8 @@
 // @license         License:X11 (MIT)
 // ==/UserScript==
 
+var $ = window.$, TD = window.TD;
+
 
 function addGlobalStyle(css) {
     var head, style;
@@ -30,8 +32,6 @@ window.TD_mustaches["column/column_header.mustache"] = window.TD_mustaches["colu
 window.TD_mustaches["topbar/app_header.mustache"] = window.TD_mustaches["topbar/app_header.mustache"].replace('</a> </nav>', '</a>' + clearAllButton + '</nav>');
 
 
-
-var $ = unsafeWindow.jQuery;
 
 $(document.body).delegate('.tdc-clear-column', 'click', function() {
    console.log('clicked'); 
