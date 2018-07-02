@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name            TweetDeck.Clear
-// @version         1.0.3
+// @version         1.0.4
 // @author          Brad Candell
 // @description     Adds a more convenient ways to clear a column or columns using the TD Controller for a much smoother interaction
 // @match           https://tweetdeck.twitter.com/*
@@ -41,14 +41,11 @@ $(document.body).delegate('.tdc-clear-all', 'click', function() {
    console.log('clicked all'); 
 });
 
-
-//$(document).on('click', '.tdc-clear-column', function () {
-//
-//    var columnId = $(this).parents('.js-column').data('column');
-//    TD.controller.columnManager.get(columnId).clear()
-//    return false;
-//
-//});
+$(document).on('click', '.tdc-clear-column', function () {
+    var columnId = $(this).parents('.js-column').data('column');
+    TD.controller.columnManager.get(columnId).clear()
+    return false;
+});
 
 $(document).on('click', '.tdc-clear-all', function () {
     TD.controller.columnManager.getAllOrdered().forEach(y => {
@@ -58,6 +55,5 @@ $(document).on('click', '.tdc-clear-all', function () {
     });
     return false;
 });
-
 
 addGlobalStyle('html.dark .column-title .attribution { font-size: 11px; }');
