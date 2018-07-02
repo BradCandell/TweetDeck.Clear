@@ -25,6 +25,11 @@ function addGlobalStyle(css) {
 var clearButton = '<a class="tdc-clear-column js-action-header-button column-header-link clear-all-link" data-action="clear"><i class="icon icon-clear-timeline" data-placement="bottom" title="" data-original-title="Clear Timeline"></i></a>';
 var clearAllButton = '<a class="tdc-clear-all js-header-action js-app-settings link-clean cf app-nav-link padding-h--10" data-action="clear-all" data-title="Clear All"> <div class="obj-left margin-l--2"> <i class="icon icon-clear-timeline icon-medium"></i> </div> <div class="nbfc padding-ts hide-condensed txt-size--16 app-nav-link-text">Clear All</div> </a>';
 
+// Modify the mustache template to include the respective modifications
+window.TD_mustaches["column/column_header.mustache"] = window.TD_mustaches["column/column_header.mustache"].replace('<div class="column-header-links">', '<div class="column-header-links">' + clearButton);
+window.TD_mustaches["topbar/app_header.mustache"] = window.TD_mustaches["topbar/app_header.mustache"].replace('</a> </nav>', '</a>' + clearAllButton + '</nav>');
+
+
 
 var $ = unsafeWindow.jQuery;
 
