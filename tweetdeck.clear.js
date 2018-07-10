@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name            TweetDeck.Clear
-// @version         1.0.4
+// @version         1.0.5
 // @author          Brad Candell
 // @description     Adds a more convenient ways to clear a column or columns using the TD Controller for a much smoother interaction
 // @match           https://tweetdeck.twitter.com/*
