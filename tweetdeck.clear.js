@@ -160,8 +160,9 @@ if (typeof module === 'object' && module.exports) {
   window.mR = moduleRaid();
 }
 
-
+window.$ = mR && mR.findFunction('jQuery') && mR.findFunction('jquery:')[0];
 var $ = window.$, TD = window.TD;
+
 
 function addGlobalStyle(css) {
     var head, style;
@@ -183,28 +184,20 @@ window.TD_mustaches["column/column_header.mustache"] = window.TD_mustaches["colu
 window.TD_mustaches["topbar/app_header.mustache"] = window.TD_mustaches["topbar/app_header.mustache"].replace('</a> </nav>', '</a>' + clearAllButton + '</nav>');
 
 
+$(document).on('click', '.tdc-clear-column', function () {
+    var columnId = $(this).parents('.js-column').data('column');
+    TD.controller.columnManager.get(columnId).clear()
+    return false;
+});
 
-//$(document.body).delegate('.tdc-clear-column', 'click', function() {
-//   console.log('clicked'); 
-//});
+$(document).on('click', '.tdc-clear-all', function () {
+    TD.controller.columnManager.getAllOrdered().forEach(y => {
+        if (y.model.state.type == 'other') {
+           y.clear();
+        }
+    });
+    return false;
+});
 
-//$(document.body).delegate('.tdc-clear-all', 'click', function() {
-//   console.log('clicked all'); 
-//});
-
-//$(document).on('click', '.tdc-clear-column', function () {
-//    var columnId = $(this).parents('.js-column').data('column');
-//    TD.controller.columnManager.get(columnId).clear()
-//    return false;
-//});
-
-//$(document).on('click', '.tdc-clear-all', function () {
-//    TD.controller.columnManager.getAllOrdered().forEach(y => {
-//        if (y.model.state.type == 'other') {
-//           y.clear();
-//        }
-//    });
-//    return false;
-//});
 
 addGlobalStyle('html.dark .column-title .attribution { font-size: 11px; }');
